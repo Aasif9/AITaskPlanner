@@ -16,20 +16,41 @@ import com.example.anfield.data.NoteDatabase
 import com.example.anfield.repository.NoteRepository
 import com.example.anfield.viewmodel.NoteViewModel
 import com.example.anfield.viewmodel.NoteViewModelFactory
+import android.content.Intent
+import android.speech.RecognizerIntent
+import android.widget.ImageButton
+import android.widget.Toast
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
+import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var noteAdapter: NoteAdapter
     private lateinit var viewModel: NoteViewModel
+    private val SPEECH_REQUEST_CODE = 100
+    private var isFabOpen = false
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+
+
         // Step 1: Setup RecyclerView and Adapter
         noteAdapter = NoteAdapter(mutableListOf()) { noteToDelete ->
             showDeleteConfirmation(noteToDelete)
         }
+
+        val micButton = findViewById<ImageButton>(R.id.micButton)
+        micButton.setOnClickListener {
+            startVoiceRecognition()
+        }
+
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -45,6 +66,13 @@ class MainActivity : AppCompatActivity() {
         viewModel.notes.observe(this) { notes ->
             noteAdapter.updateNotes(notes)
         }
+
+        val fab = findViewById<FloatingActionButton>(R.id.voiceFab)
+        fab.setOnClickListener {
+            val intent = Intent(this, NoteEditorActivity::class.java)
+            startActivity(intent)
+        }
+
 
         // Step 4: Load Notes Initially
         viewModel.loadNotes()
@@ -79,6 +107,55 @@ class MainActivity : AppCompatActivity() {
             .create()
             .show()
     }
+
+    private fun startVoiceRecognition() {
+        val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
+            putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
+            putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
+            putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak your note")
+        }
+
+        try {
+            startActivityForResult(intent, SPEECH_REQUEST_CODE)
+        } catch (e: Exception) {
+            Toast.makeText(this, "Your device doesn't support speech input", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == SPEECH_REQUEST_CODE && resultCode == RESULT_OK) {
+            val results = data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
+            val spokenText = results?.get(0) ?: ""
+
+            val titleInput = findViewById<EditText>(R.id.titleInput)
+            val descInput = findViewById<EditText>(R.id.descInput)
+
+            if (titleInput.text.isEmpty()) {
+                titleInput.setText(spokenText)
+            } else {
+                descInput.setText(spokenText)
+            }
+
+            // ✅ Auto-save if both fields are filled
+            if (titleInput.text.isNotEmpty() && descInput.text.isNotEmpty()) {
+                val note = Note(
+                    title = titleInput.text.toString(),
+                    description = descInput.text.toString()
+                )
+                viewModel.addNote(note)
+                titleInput.text.clear()
+                descInput.text.clear()
+
+                // ✅ Show confirmation
+                Snackbar.make(findViewById(android.R.id.content), "Voice note added", Snackbar.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+
+
 }
 
 

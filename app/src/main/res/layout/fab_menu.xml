@@ -1,0 +1,52 @@
+<!-- fab_menu.xml -->
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- FAB: Text Note -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="80dp"
+        android:visibility="gone"
+        android:src="@drawable/text"
+        android:contentDescription="Text Note" />
+
+    <!-- FAB: Audio Note -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAudio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="140dp"
+        android:visibility="gone"
+        android:src="@drawable/mic"
+        android:contentDescription="Audio Note" />
+
+    <!-- FAB: Image Note -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="200dp"
+        android:visibility="gone"
+        android:src="@drawable/image"
+        android:contentDescription="Image Note" />
+
+    <!-- Main FAB (+ / X) -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/plus"
+        android:contentDescription="Add Note"
+        android:backgroundTint="#586BD7"
+        android:tint="@color/purple_200" />
+</merge>
