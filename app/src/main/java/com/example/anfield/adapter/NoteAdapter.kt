@@ -37,18 +37,18 @@ class NoteAdapter(
 
     override fun getItemCount(): Int = notes.size
 
-    fun addNote(note: Note) {
-        notes.add(note)
-        notifyItemInserted(notes.size - 1)
-    }
-
-    fun deleteNote(note: Note){
-        val index = notes.indexOf(note);
-        if(index!=-1){
-            notes.removeAt(index);
-            notifyItemRemoved(index);
-        }
-    }
+//    fun addNote(note: Note) {
+//        notes.add(note)
+//        notifyItemInserted(notes.size - 1)
+//    }
+//
+//    fun deleteNote(note: Note){
+//        val index = notes.indexOf(note);
+//        if(index!=-1){
+//            notes.removeAt(index);
+//            notifyItemRemoved(index);
+//        }
+//    }
     // Called after DB update to refresh UI
     fun updateNotes(newNotes: List<Note>) {
         notes.clear()

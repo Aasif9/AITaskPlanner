@@ -13,8 +13,7 @@ import androidx.lifecycle.LiveData
 import com.example.anfield.data.Note
 import com.example.anfield.repository.NoteRepository
 
-// 🔹 ViewModel exists to hold data for the UI.
-// It survives configuration changes like screen rotation.
+// 🔹 ViewModel exists to hold data for the UI. It survives configuration changes like screen rotation.
 // It also performs background work using coroutine scope.
 
 class NoteViewModel(private val repository: NoteRepository) : ViewModel() {
