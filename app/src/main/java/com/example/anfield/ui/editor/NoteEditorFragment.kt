@@ -1,11 +1,11 @@
-package com.example.anfield.ui
+package com.example.anfield.ui.editor
 
 import android.os.Bundle
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.example.anfield.R
 
-class NoteEditorActivity : AppCompatActivity() {
+class NoteEditorFragment : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

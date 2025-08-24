@@ -1,37 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
-    <!-- Toolbar substitute -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="end">
+<!--    <com.google.android.material.appbar.MaterialToolbar-->
+<!--        android:id="@+id/topAppBar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="?attr/actionBarSize"-->
+<!--        app:navigationIcon="@drawable/ic_arrow_back_24"-->
+<!--        app:menu="@menu/menu_editor"-->
+<!--        android:background="?attr/colorSurface"-->
+<!--        app:title=""-->
+<!--        app:layout_scrollFlags="scroll|enterAlways"/>-->
 
-
-    </LinearLayout>
-
-    <EditText
-        android:id="@+id/titleEditor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Title"
-        android:textSize="24sp"
-        android:padding="8dp"
-        android:background="@null"/>
-
-    <EditText
-        android:id="@+id/descEditor"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:hint="Note"
-        android:textSize="18sp"
-        android:padding="8dp"
-        android:background="@null"
-        android:gravity="top"/>
+        android:fillViewport="true"
+        android:padding="16dp"
+        >
 
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Title -->
+            <EditText
+                android:id="@+id/titleEditor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Title"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:background="@null"
+                android:paddingVertical="8dp"/>
+
+            <!-- Meta: date/time + char count -->
+            <TextView
+                android:id="@+id/metaText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="24 August 10:00 PM | 0 characters"
+                android:textSize="12sp"
+                android:textColor="#7A7A7A"
+                android:paddingBottom="12dp"/>
+
+            <!-- Body -->
+            <EditText
+                android:id="@+id/descEditor"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Start writing"
+                android:textSize="18sp"
+                android:background="@null"
+                android:gravity="top"
+                android:minLines="12"
+                android:paddingBottom="24dp"/>
+        </LinearLayout>
+    </ScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,76 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- Title Input -->
-    <EditText
-        android:id="@+id/titleInput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Note Title"
-        android:inputType="text"
-        android:padding="12dp"
-        android:background="@android:drawable/edit_text"
-        android:layout_marginBottom="10dp"/>
-
-    <!-- Description Input -->
-    <EditText
-        android:id="@+id/descInput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Note Description"
-        android:inputType="textMultiLine"
-        android:minLines="3"
-        android:padding="12dp"
-        android:background="@android:drawable/edit_text"
-        android:layout_marginBottom="10dp"/>
-
-    <!-- Add Button -->
-    <Button
-        android:id="@+id/addBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add Note"
-        android:layout_marginBottom="16dp"/>
-
-    <!-- RecyclerView to list notes -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <!-- Fragment container -->
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
-    <LinearLayout
+
+    <!-- Bottom Navigation -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        app:menu="@menu/bottom_nav_menu"/>
+<!--    &lt;!&ndash; Title Input &ndash;&gt;-->
+<!--    <EditText-->
+<!--        android:id="@+id/titleInput"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="Note Title"-->
+<!--        android:inputType="text"-->
+<!--        android:padding="12dp"-->
+<!--        android:background="@android:drawable/edit_text"-->
+<!--        android:layout_marginBottom="10dp"/>-->
 
-        android:layout_marginTop="8dp"
-        android:gravity="center">
+<!--    &lt;!&ndash; Description Input &ndash;&gt;-->
+<!--    <EditText-->
+<!--        android:id="@+id/descInput"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="Note Description"-->
+<!--        android:inputType="textMultiLine"-->
+<!--        android:minLines="3"-->
+<!--        android:padding="12dp"-->
+<!--        android:background="@android:drawable/edit_text"-->
+<!--        android:layout_marginBottom="10dp"/>-->
 
-        <ImageButton
-            android:id="@+id/micButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/voice"
-            android:contentDescription="Voice Input"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:padding="8dp" />
-    </LinearLayout>
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/voiceFab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        android:contentDescription="Voice Note"
-        android:src="@drawable/plus"
-    android:tint="@android:color/white"
-    android:backgroundTint="#F88764" />
+<!--    &lt;!&ndash; Add Button &ndash;&gt;-->
+<!--    <Button-->
+<!--        android:id="@+id/addBtn"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Add Note"-->
+<!--        android:layout_marginBottom="16dp"/>-->
+
+<!--    &lt;!&ndash; RecyclerView to list notes &ndash;&gt;-->
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/recyclerView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_weight="1"/>-->
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:gravity="center">-->
+
+<!--        <ImageButton-->
+<!--            android:id="@+id/micButton"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:src="@drawable/voice"-->
+<!--            android:contentDescription="Voice Input"-->
+<!--            android:background="?attr/selectableItemBackgroundBorderless"-->
+<!--            android:padding="8dp" />-->
+<!--    </LinearLayout>-->
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:id="@+id/voiceFab"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="bottom|end"-->
+<!--        android:layout_margin="16dp"-->
+<!--        android:contentDescription="Voice Note"-->
+<!--        android:src="@drawable/plus"-->
+<!--    android:tint="@android:color/white"-->
+<!--    android:backgroundTint="#F88764" />-->
 <!--    <include-->
 <!--        layout="@layout/fab_menu"-->
 <!--        android:id="@+id/fabMenuLayout"-->

@@ -2,7 +2,7 @@ package com.example.anfield.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.anfield.repository.NoteRepository
+import com.example.anfield.data.repository.NoteRepository
 
 
 // 🔹 ViewModelFactory is needed because our ViewModel has a constructor parameter (NoteRepository).

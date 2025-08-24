@@ -1,10 +1,11 @@
-package com.example.anfield.data
+package com.example.anfield.data.local
 
 import androidx.room.RoomDatabase
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
+import com.example.anfield.data.model.Note
 
 
 @Database(entities = [Note::class], version = 1)
@@ -14,7 +15,7 @@ abstract class NoteDatabase : RoomDatabase() {
     companion object {
         @Volatile private var INSTANCE: NoteDatabase? = null
 
-        fun getInstance(context: Context): NoteDatabase {
+        fun getDatabase(context: Context): NoteDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
@@ -25,5 +26,7 @@ abstract class NoteDatabase : RoomDatabase() {
                 instance
             }
         }
+
+
     }
 }

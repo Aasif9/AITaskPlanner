@@ -1,4 +1,4 @@
-package com.example.anfield.data
+package com.example.anfield.data.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
